@@ -1,0 +1,32 @@
+DROP DATABASE IF EXISTS techblog_db;
+CREATE DATABASE techblog_db;
+USE techblog_db;
+
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS blogpost;
+DROP TABLE IF EXISTS comment;
+
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(15) NOT NULL,
+    password VARCHAR(60) NOT NULL
+);
+
+CREATE TABLE blogpost (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(100) NOT NULL,
+    post_text TEXT NOT NULL, 
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+CREATE TABLE comment (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    comment_text TEXT(500) NOT NULL,
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id INTEGER NOT NULL,
+    blog_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (blog_id) REFERENCES blogpost(id)
+)
