@@ -9,35 +9,35 @@ router.get('/', (req, res) => {
 
 // Route to create a new account
 router.post('/', (req, res) => {
-  const { username, password } = req.body;
-  console.log(`Username: ${username}, Password: ${password}`);
-
-  // Check if username and email are unique
-  User.findOne({ where: { username } })
-    .then(user => {
-      console.log(`User: ${JSON.stringify(user)}`);
-      if (user) {
-        if (user.username === username) {
-          console.log('Username already taken');
+    const { username, password } = req.body;
+  
+    // Check if username is unique
+    User.findOne({ where: { username } })
+      .then(user => {
+        if (user) {
+          // Username already taken
           res.redirect('/create-account?error=Username already taken');
-        }
-      } else {
-        // Create new user in the database
-        User.create({ username, password })
-        .then(() => {
-            res.redirect('/login'); // redirect to the login page
+        } else {
+          // Create new user in the database
+          User.create({ username, password })
+          .then(newUser => {
+              req.session.userId = newUser.id;
+              req.session.loggedIn = true;
+  
+              req.session.save(() => {
+                  res.redirect('/dashboard'); // redirect to the dashboard page
+              });
           })
           .catch(error => {
-              console.error(error);
+              console.error('Error:', error);
               res.status(500).json({ message: 'Internal server error' });
           });
-      }
-    })
-    .catch(error => {
-      console.error(error);
-      console.log(JSON.stringify(req.body));
-      res.status(500).json({ message: 'Internal server error' });
-    });
-});
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Internal server error' });
+      });
+  });  
 
 module.exports = router;
