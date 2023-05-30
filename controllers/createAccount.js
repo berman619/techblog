@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 // Route to create a new account
-router.post('/', (req, res) => {
+router.post('/create-account', (req, res) => {
     const { username, password } = req.body;
     // Check if username is unique
     User.findOne({ where: { username } })
