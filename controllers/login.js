@@ -11,7 +11,7 @@ router.get('/login', (req, res) => {
     res.render('login');
   });
 
-router.post('/', (req, res) => {
+router.post('/login', (req, res) => {
     const { username, password } = req.body;
     User.findOne({ where: { username } })
       .then(user => {
