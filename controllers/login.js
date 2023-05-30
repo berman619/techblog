@@ -3,13 +3,16 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../models/user.js');
 
-router.get('/', (req, res) => {
-  res.render('login');
-});
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/home');
+      return;
+    }
+    res.render('login');
+  });
 
 router.post('/', (req, res) => {
     const { username, password } = req.body;
-  
     User.findOne({ where: { username } })
       .then(user => {
         if (user) {

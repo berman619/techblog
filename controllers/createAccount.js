@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
 // Route to create a new account
 router.post('/', (req, res) => {
     const { username, password } = req.body;
-  
     // Check if username is unique
     User.findOne({ where: { username } })
       .then(user => {
