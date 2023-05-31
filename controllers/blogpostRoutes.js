@@ -1,3 +1,6 @@
+const express = require('express');
+const router = express.Router();
+
 router.get('/post/:id', (req, res) => {
     // Get the id from the route params
     const { id } = req.params;

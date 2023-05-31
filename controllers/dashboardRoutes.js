@@ -1,3 +1,6 @@
+const express = require('express');
+const router = express.Router();
+
 router.get('/dashboard', (req, res) => {
     // render dashboard with user's blog posts
   });

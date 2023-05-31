@@ -1,3 +1,6 @@
+const express = require('express');
+const router = express.Router();
+
 router.get('/edit/:id?', (req, res) => {
     // render edit page with or without existing post data
   });
