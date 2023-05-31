@@ -12,7 +12,7 @@ router.use('/home', homeRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/login', loginRoutes);
 router.use('/signup', signupRoutes);
-router.use('/blogpost', blogpostRoutes);
+router.use('/post', blogpostRoutes);
 router.use('/edit', editRoutes);
 
 module.exports = router;

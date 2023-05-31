@@ -1,14 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/post/:id', (req, res) => {
-    // Get the id from the route params
+router.get('/:id', (req, res) => {
     const { id } = req.params;
-  
-    // Find the blog post with this id
     BlogPost.findById(id)
       .then(post => {
-        // Render the blogpost view with this post's data
         res.render('blogpost', post);
       })
       .catch(error => {
@@ -17,13 +13,34 @@ router.get('/post/:id', (req, res) => {
       });
   });
   
-
-  router.get('/edit/:id?', (req, res) => {
-    if (req.params.id) {
-      // Fetch the post with this ID and pass it to the view
-    } else {
-      // Render the view without passing in any post data
-    }
+  router.get('/post/:id', (req, res) => {
+    BlogPost.findByPk(req.params.id, {
+      include: [
+        {
+          model: Comment,
+          include: [
+            {
+              model: User,
+              attributes: ['username']
+            }
+          ]
+        },
+        {
+          model: User,
+          attributes: ['username']
+        }
+      ]
+    })
+    .then((blogPost) => {
+      if (blogPost) {
+        res.render('post', { blogPost: blogPost }); 
+      } else {
+        res.status(404).send('Blog post not found');
+      }
+    })
+    .catch((err) => {
+      res.status(500).send('Server error');
+    });
   });
   
   module.exports = router;
