@@ -17,3 +17,5 @@ router.get('/dashboard', (req, res) => {
     // delete a blog post
   });
   
+
+  module.exports = router;

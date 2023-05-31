@@ -3,12 +3,12 @@ const router = express.Router();
 const User = require('../models/user.js');
 
 // Route to render the create account page
-router.get('/signup', (req, res) => {
+router.get('/', (req, res) => {
   res.render('signup');
 });
 
 // Route to create a new account
-router.post('/signup', (req, res) => {
+router.post('/', (req, res) => {
     const { username, password } = req.body;
     // Check if username is unique
     User.findOne({ where: { username } })

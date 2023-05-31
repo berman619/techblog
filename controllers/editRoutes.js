@@ -12,3 +12,5 @@ router.get('/edit/:id?', (req, res) => {
   router.put('/edit/:id', (req, res) => {
     // update a blog post
   });  
+
+  module.exports = router;
