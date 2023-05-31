@@ -1,19 +1,18 @@
-{{!-- This would be your main landing page, and it could contain a list of all blog posts. Each post would include the title, a preview of the contents, the date it was created, and the username of the author. Each post might be a Bootstrap card or list group item. There could also be a button or link to read the full post. --}}
-
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-6">
-    <main>
-    {{#each blogposts}}
-    <!-- Bootstrap card -->
-        <!-- Card title = Post title -->
-        <!-- Card text = Post content -->
-        <!-- Card footer = "Posted by <username> on <date>" -->
-        <!-- Button to read more about the post -->
-        <a href="/post/{{id}}" class="btn btn-primary">Read More</a>
-    <!-- End for each -->
-    {{/each}}
-    </main>
+      <main>
+      {{#each blogposts}}
+          <div class="card mb-3" style="width: 100%;">
+            <div class="card-header">
+              <a href="/post/{{id}}">{{title}}</a>
+            </div>
+            <div class="card-footer text-muted">
+              Posted on {{date_created}}
+            </div>
+          </div>
+      {{/each}}
+      </main>
     </div>
   </div>
 </div>

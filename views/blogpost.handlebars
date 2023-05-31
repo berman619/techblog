@@ -1,3 +1,35 @@
-This page would show the full contents of a single blog post. It could include the post title, contents, date, and author at the top. Below the post, there could be a list of comments, with each comment including the commenter's username, the comment text, and the date it was posted. If the user is logged in, there could also be a form to submit a new comment.
-
-<h1>{{title}}</h1>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Post Title: {{title}}
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                Post Content: {{content}}
+            </p>
+        </div>
+        <div class="card-footer text-muted">
+            Posted by {{username}} on {{date_created}}
+        </div>
+    </div>
+    {{#if logged_in}}
+        <form action="/comments/new" method="POST">
+            <div class="form-group">
+                <label for="comment">Leave a Comment:</label>
+                <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+            </div>
+            <input type="hidden" name="blog_id" value="{{id}}">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    {{/if}}
+    {{#each comments}}
+    <div class="card mt-4">
+        <div class="card-header">
+            Comment by {{username}} on {{date_created}}
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{content}}</p>
+        </div>
+    </div>
+    {{/each}}
+</div>
