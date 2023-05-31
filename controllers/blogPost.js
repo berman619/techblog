@@ -14,3 +14,12 @@ router.get('/post/:id', (req, res) => {
       });
   });
   
+
+  router.get('/edit/:id?', (req, res) => {
+    if (req.params.id) {
+      // Fetch the post with this ID and pass it to the view
+    } else {
+      // Render the view without passing in any post data
+    }
+  });
+  

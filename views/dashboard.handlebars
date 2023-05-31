@@ -1,15 +1,19 @@
-{{!-- This page is likely where users can create, update, and delete their blog posts. It could contain a list of the user's posts, with each post including an "Edit" button and a "Delete" button. There could also be a form or button to create a new post. --}}
-
-<!-- Bootstrap container -->
-<!-- Bootstrap row -->
-  <!-- Bootstrap column -->
-  <!-- Title "Dashboard" -->
-  <!-- Button to create a new post -->
-  <!-- Each block here is a post created by the user -->
-    <!-- For each post in user posts -->
-    <!-- Bootstrap card -->
-      <!-- Card title = Post title -->
-      <!-- Card text = Post content -->
-      <!-- Button to edit the post -->
-      <!-- Button to delete the post -->
-    <!-- End for each -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h1 class="my-4">Dashboard</h1>
+      <a href="/edit" class="btn btn-primary mb-4" id="newPostButton">Create New Post</a>
+      {{#each posts}}
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">{{this.title}}</h5>
+            <p class="card-text">{{truncate this.content 100}}</p>
+          <div class="card-footer">
+            <a href="/edit/{{this.id}}" class="btn btn-warning">Edit</a>
+            <button data-id="{{this.id}}" class="btn btn-danger deletePostButton">Delete</button>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
