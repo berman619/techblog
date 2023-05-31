@@ -25,7 +25,7 @@ router.post('/login', (req, res) => {
                 req.session.loggedIn = true;
   
                 req.session.save(() => {
-                  res.redirect('/dashboard'); // redirect to the dashboard page
+                  res.redirect('/home'); // redirect to the home page
                 });
               } else {
                 // Passwords don't match
