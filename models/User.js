@@ -1,5 +1,3 @@
-// The User model should have fields for the username and hashed password.
-
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const bcrypt = require('bcryptjs');

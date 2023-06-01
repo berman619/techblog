@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const { Blogpost } = require('../models');
 
 router.get('/:id', (req, res) => {
     const { id } = req.params;
-    BlogPost.findById(id)
+    Blogpost.findById(id)
       .then(post => {
         res.render('blogpost', post);
       })
@@ -14,7 +15,7 @@ router.get('/:id', (req, res) => {
   });
   
   router.get('/post/:id', (req, res) => {
-    BlogPost.findByPk(req.params.id, {
+    Blogpost.findByPk(req.params.id, {
       include: [
         {
           model: Comment,

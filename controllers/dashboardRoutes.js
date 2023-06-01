@@ -1,19 +1,28 @@
 const express = require('express');
 const router = express.Router();
+const { Blogpost } = require('../models');
+const isLoggedIn = require('../middleware/auth');
+
 
 router.get('/', isLoggedIn, (req, res) => {
-  BlogPost.findAll({
-      where: {
-          user_id: req.session.user.id
-      }
+  console.log("Inside Dashboard Route");
+  console.log("Session User: ", req.session.user);
+  if (!req.session || !req.session.user) {
+    return res.status(401).json({ message: 'You must be logged in to view this page' });
+  }
+  Blogpost.findAll({
+    where: {
+        user_id: req.session.user.id
+    }
   })
   .then(blogPosts => {
-      res.render('dashboard', { blogPosts });
+    res.render('dashboard', { blogPosts });
   })
   .catch(err => {
-      res.status(500).json({ message: 'Error retrieving blog posts' });
+    res.status(500).json({ message: 'Error retrieving blog posts' });
   });
 });
+
   
 router.delete('/:id', isLoggedIn, (req, res) => {
   BlogPost.destroy({

@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
       .then(user => {
         if (user) {
           // Username already taken
-          res.redirect('/create-account?error=Username already taken');
+          res.redirect('/?error=Username already taken');
         } else {
           // Create new user in the database
           User.create({ username, password })

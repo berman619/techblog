@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { BlogPost } = require('../models');
-const { isLoggedIn } = require('../middlewares');
+const { Blogpost } = require('../models');
+const isLoggedIn = require('../middleware/auth');
 
 router.get('/:id?', isLoggedIn, (req, res) => {
     if (req.params.id) {
-        BlogPost.findOne({
+        Blogpost.findOne({
             where: {
                 id: req.params.id,
                 user_id: req.session.user.id
@@ -27,7 +27,7 @@ router.get('/:id?', isLoggedIn, (req, res) => {
 });
 
 router.post('/', isLoggedIn, (req, res) => {
-    BlogPost.create({
+    Blogpost.create({
         title: req.body.title,
         content: req.body.content,
         user_id: req.session.user.id
@@ -41,7 +41,7 @@ router.post('/', isLoggedIn, (req, res) => {
 });
 
 router.put('/:id', isLoggedIn, (req, res) => {
-    BlogPost.update({
+    Blogpost.update({
         title: req.body.title,
         content: req.body.content,
     }, {
