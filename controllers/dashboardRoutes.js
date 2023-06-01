@@ -11,12 +11,14 @@ router.get('/', isLoggedIn, (req, res) => {
   }
   Blogpost.findAll({
     where: {
-        user_id: req.session.user.id
-    }
-  })
-  .then(blogPosts => {
-    res.render('dashboard', { blogPosts });
-  })
+      user_id: req.session.user.id
+  }
+    })
+    .then(blogPosts => {
+      const plainBlogPosts = blogPosts.map(post => post.get({ plain: true }));
+      console.log(plainBlogPosts);
+      res.render('dashboard', { posts: plainBlogPosts });
+    })
   .catch(err => {
     res.status(500).json({ message: 'Error retrieving blog posts' });
   });
