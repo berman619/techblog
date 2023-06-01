@@ -8,6 +8,7 @@ const hbs = exphbs.create({ helpers });
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const setLocals = require('./middleware/setLocals');
 
 const PORT = process.env.PORT || 3001;
 
@@ -27,6 +28,8 @@ app.use(session({
   }),
   cookie: { secure: 'auto' },
 }));
+
+app.use(setLocals);
 
 app.use(routes);
 

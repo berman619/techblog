@@ -3,7 +3,6 @@ const router = express.Router();
 const { Blogpost } = require('../models');
 const isLoggedIn = require('../middleware/auth');
 
-
 router.get('/', isLoggedIn, (req, res) => {
   console.log("Inside Dashboard Route");
   console.log("Session User: ", req.session.user);

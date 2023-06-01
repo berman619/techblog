@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const User = require('../models/user.js');
+const { User } = require('../models');
 
 router.get('/', (req, res) => {
     if (req.session.loggedIn) {
@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     res.render('login');
   });
 
-router.post('/', (req, res) => {
+  router.post('/', (req, res) => {
     const { username, password } = req.body;
     User.findOne({ where: { username } })
       .then(user => {
@@ -21,9 +21,13 @@ router.post('/', (req, res) => {
             .then(match => {
               if (match) {
                 // Passwords match
-                req.session.userId = user.id;
+                req.session.user = {
+                  id: user.id,
+                  username: user.username,
+                  // Include other user properties you want to save
+                };
                 req.session.loggedIn = true;
-  
+                console.log("Session User: ", req.session.user);
                 req.session.save(() => {
                   res.redirect('/home'); // redirect to the home page
                 });
@@ -45,6 +49,6 @@ router.post('/', (req, res) => {
         console.error('Error:', error);
         res.status(500).json({ message: 'Internal server error' });
       });
-  });  
+  });
 
 module.exports = router;

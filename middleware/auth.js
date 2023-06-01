@@ -1,6 +1,8 @@
 function isLoggedIn(req, res, next) {
     console.log("Inside isLoggedIn middleware");
     console.log("Logged In Status: ", req.session.loggedIn);
+    console.log("Session User: ", req.session.user);
+
     
     if (!req.session.loggedIn) {
       console.log("Not logged in. Sending error message...");

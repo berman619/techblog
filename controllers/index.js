@@ -7,10 +7,12 @@ const loginRoutes = require('./loginRoutes');
 const signupRoutes = require('./signupRoutes');
 const blogpostRoutes = require('./blogpostRoutes');
 const editRoutes = require('./editRoutes');
+const logoutRoute = require ('./logoutRoute');
 
 function checkLogin(req, res, next) {
     console.log("Inside checkLogin middleware");
     console.log("Logged In Status: ", req.session.loggedIn);
+    console.log("Session User: ", req.session.user);
   
     if (req.session.loggedIn) {
       console.log("Redirecting to Dashboard...");
@@ -27,6 +29,7 @@ router.use('/login', loginRoutes);
 router.use('/signup', signupRoutes);
 router.use('/post', blogpostRoutes);
 router.use('/edit', editRoutes);
+router.use('/logout', logoutRoute);
 
 router.get('/', checkLogin);
 
