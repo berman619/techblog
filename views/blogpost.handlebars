@@ -1,15 +1,15 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            Post Title: {{blogPost.title}}
+            {{blogPost.dataValues.title}}
         </div>
         <div class="card-body">
             <p class="card-text">
-                Post Content: {{blogPost.content}}
+                {{blogPost.dataValues.content}}
             </p>
         </div>
         <div class="card-footer text-muted">
-            Posted by {{blogPost.user.username}} on {{blogPost.date_created}}
+            Posted by {{blogPost.dataValues.user.username}} on {{blogPost.dataValues.date_created}}
         </div>
     </div>
     {{#if logged_in}}
@@ -18,7 +18,7 @@
                 <label for="comment">Leave a Comment:</label>
                 <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
             </div>
-            <input type="hidden" name="blog_id" value="{{blogPost.id}}">
+            <input type="hidden" name="blog_id" value="{{blogPost.dataValues.id}}">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     {{/if}}
