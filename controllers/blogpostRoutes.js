@@ -14,34 +14,34 @@ router.get('/:id', (req, res) => {
       });
   });
   
-  router.get('/post/:id', (req, res) => {
-    Blogpost.findByPk(req.params.id, {
-      include: [
-        {
-          model: Comment,
-          include: [
-            {
-              model: User,
-              attributes: ['username']
-            }
-          ]
-        },
-        {
-          model: User,
-          attributes: ['username']
-        }
-      ]
-    })
-    .then((blogPost) => {
-      if (blogPost) {
-        res.render('post', { blogPost: blogPost }); 
-      } else {
-        res.status(404).send('Blog post not found');
+router.get('/post/:id', (req, res) => {
+  Blogpost.findByPk(req.params.id, {
+    include: [
+      {
+        model: Comment,
+        include: [
+          {
+            model: User,
+            attributes: ['username']
+          }
+        ]
+      },
+      {
+        model: User,
+        attributes: ['username']
       }
-    })
-    .catch((err) => {
-      res.status(500).send('Server error');
-    });
+    ]
+  })
+  .then((blogPost) => {
+    if (blogPost) {
+      res.render('post', { blogPost: blogPost }); 
+    } else {
+      res.status(404).send('Blog post not found');
+    }
+  })
+  .catch((err) => {
+    res.status(500).send('Server error');
   });
+});
   
-  module.exports = router;
+module.exports = router;

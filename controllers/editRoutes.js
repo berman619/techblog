@@ -4,26 +4,26 @@ const { Blogpost } = require('../models');
 const isLoggedIn = require('../middleware/auth');
 
 router.get('/:id?', isLoggedIn, (req, res) => {
-    if (req.params.id) {
-        Blogpost.findOne({
-            where: {
-                id: req.params.id,
-                user_id: req.session.user.id
-            }
-        })
-        .then(blogPost => {
-            if (blogPost) {
-                res.render('edit', { blogPost });
-            } else {
-                res.status(404).json({ message: 'Post not found' });
-            }
-        })
-        .catch(err => {
-            res.status(500).json({ message: 'Error retrieving blog post' });
-        });
-    } else {
-        res.render('edit');
-    }
+  if (req.params.id) {
+      Blogpost.findOne({
+          where: {
+              id: req.params.id,
+              user_id: req.session.user.id
+          }
+      })
+      .then(post => {
+          if (post) {
+              res.render('edit', { post: post.get({ plain: true }) });
+          } else {
+              res.status(404).json({ message: 'Post not found' });
+          }
+      })
+      .catch(err => {
+          res.status(500).json({ message: 'Error retrieving blog post' });
+      });
+  } else {
+      res.render('edit');
+  }
 });
 
 router.post('/', isLoggedIn, (req, res) => {
