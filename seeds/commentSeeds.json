@@ -1,0 +1,43 @@
+[
+    {
+      "content": "I agree that functional programming brings a lot of benefits. However, it's important to remember that it's not a one-size-fits-all solution. Depending on the use case, other paradigms might be more suitable.",
+      "user_id": 2,
+      "blog_id": 1
+    },
+    {
+      "content": "I've recently started using TypeScript and it has been a game changer. The ability to catch errors during development rather than at runtime is invaluable.",
+      "user_id": 1,
+      "blog_id": 2
+    },
+    {
+      "content": "I'm interested in learning more about machine learning with JavaScript. Can you recommend any good resources for starting out?",
+      "user_id": 2,
+      "blog_id": 3
+    },
+    {
+      "content": "I've found CSS Grid to be really powerful. It's especially useful when you need to create complex layouts that would be difficult to achieve with other CSS techniques.",
+      "user_id": 1,
+      "blog_id": 4
+    },
+    {
+      "content": "The concept of 'function composition' in functional programming is particularly interesting. It really shows the power of using simple functions to create more complex operations.",
+      "user_id": 2,
+      "blog_id": 1
+    },
+    {
+      "content": "One thing I've learned from using TypeScript is the importance of writing good type definitions. They can really help make the code more readable and understandable.",
+      "user_id": 1,
+      "blog_id": 2
+    },
+    {
+      "content": "I never thought I'd see the day where machine learning could be run directly in the browser. It's really a testament to how far JavaScript has come as a language.",
+      "user_id": 2,
+      "blog_id": 3
+    },
+    {
+      "content": "I remember when I first started learning CSS and how daunting it was. CSS Grid definitely helps simplify the process of creating layouts, but there's still a lot to learn.",
+      "user_id": 1,
+      "blog_id": 4
+    }
+  ]
+  
