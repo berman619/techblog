@@ -1,28 +1,28 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            {{blogPost.dataValues.title}}
+            {{blogPost.title}}
         </div>
         <div class="card-body">
             <p class="card-text">
-                {{blogPost.dataValues.content}}
+                {{blogPost.content}}
             </p>
         </div>
         <div class="card-footer text-muted">
-            Posted by {{blogPost.dataValues.user.username}} on {{blogPost.dataValues.date_created}}
+            Posted by {{blogPost.user.username}} on {{blogPost.date_created}}
         </div>
     </div>
     {{#if logged_in}}
-        <form action="/comments/new" method="POST">
+        <form action="/post/{{blogPost.id}}/comments/new" method="POST">
             <div class="form-group">
                 <label for="comment">Leave a Comment:</label>
                 <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
             </div>
-            <input type="hidden" name="blog_id" value="{{blogPost.dataValues.id}}">
+            <input type="hidden" name="blog_id" value="{{blogPost.id}}">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     {{/if}}
-    {{#each comments}}
+    {{#each blogPost.comments}}
     <div class="card mt-4">
         <div class="card-header">
             Comment by {{this.user.username}} on {{this.date_created}}
@@ -31,5 +31,5 @@
             <p class="card-text">{{this.content}}</p>
         </div>
     </div>
-    {{/each}}
+{{/each}}
 </div>
