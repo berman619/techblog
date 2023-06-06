@@ -25,7 +25,7 @@ router.get('/', isLoggedIn, (req, res) => {
 });
 
 router.delete('/:id', isLoggedIn, (req, res) => {
-  BlogPost.destroy({
+  Blogpost.destroy({
       where: {
           id: req.params.id,
           user_id: req.session.user.id
