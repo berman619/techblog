@@ -1,6 +1,6 @@
 <div class="container">
     <div class="card">
-        <div class="card-header">
+        <div class="card-header blog-title">
             {{blogPost.title}}
         </div>
         <div class="card-body">
@@ -8,8 +8,8 @@
                 {{blogPost.content}}
             </p>
         </div>
-        <div class="card-footer text-muted">
-            Posted by {{blogPost.user.username}} on {{blogPost.date_created}}
+        <div class="card-footer timestamp">
+        Posted by {{blogPost.user.username}} on {{blogPost.date_created}}
         </div>
     </div>
     {{#if logged_in}}

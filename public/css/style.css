@@ -17,7 +17,7 @@ body {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-
+ 
 .form-signin input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
@@ -48,11 +48,18 @@ body {
   color: #fff;
 }
 
+.navbar-brand {
+  padding-left: 20px;
+  font-family: 'Fira Code', monospace;
+  font-size: 24px;
+}
+
 .card {
   background-color: #4B515D;
   color: #fff;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   font-family: 'Courier New', Courier, monospace;
+  margin-top: 20px;
 }
 
 .comment-card {
@@ -60,6 +67,12 @@ body {
   color: #BFC0C0;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   font-family: 'Courier New', Courier, monospace;
+}
+
+.comment-card .card-header {
+  background-color: #4B515D;
+  color: #BFC0C0;
+  font-weight: bold;
 }
 
 .card a {
@@ -96,4 +109,14 @@ body {
   background-color: #2D3142;
   color: #fff;
   border-color: #1e88e5;
+}
+
+.timestamp {
+  color: #FFFFFF;
+  background-color: #2D3142;
+}
+
+.blog-title {
+  font-size: 2em;
+  font-weight: bold;
 }

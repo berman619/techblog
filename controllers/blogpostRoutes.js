@@ -30,8 +30,19 @@ router.get('/:id', (req, res) => {
   })
   .then(blogPost => {
     if (blogPost) {
-      const blogPostPlain = blogPost.get({ plain: true });
-      res.render('blogpost', { blogPost: blogPostPlain, loggedIn: req.session.loggedIn });
+      const blogPostData = blogPost.get({ plain: true });
+
+      let date = new Date(blogPostData.date_created);
+      let formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+      blogPostData.date_created = formattedDate;
+
+      blogPostData.comments.forEach(comment => {
+        let commentDate = new Date(comment.date_created);
+        let formattedCommentDate = `${commentDate.getMonth() + 1}/${commentDate.getDate()}/${commentDate.getFullYear()}`;
+        comment.date_created = formattedCommentDate;
+      });
+
+      res.render('blogpost', { blogPost: blogPostData, loggedIn: req.session.loggedIn });
     } else {
       res.status(404).send('Blog post not found');
     }
